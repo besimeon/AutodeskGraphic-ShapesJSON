@@ -23,3 +23,5 @@ NOTE:  It DOESN'T MATTER if all of the data is VISIBLE on-screen.  If you press 
 3.  Press "Command + c" to copy the selected data.
 4.  In your editor of choice, create a new file for the JSON data & press "Command + v" to paste the JSON data.
 NOTE:  Or, you could paste the JSON data directly into your Phaser project if you prefer.
+
+# ENJOY!
