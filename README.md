@@ -25,3 +25,5 @@ NOTE:  It DOESN'T MATTER if all of the data is VISIBLE on-screen.  If you press 
 NOTE:  Or, you could paste the JSON data directly into your Phaser project if you prefer.
 
 # ENJOY!
+
+For feedback, contact me here in github or goto blakesimeon.com.
