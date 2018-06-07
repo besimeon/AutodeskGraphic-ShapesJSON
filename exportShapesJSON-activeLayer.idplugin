@@ -6,7 +6,12 @@ var jsShapes = doc.activeLayer().shapes()
 var alertMsg = "{\n\t\"shapes\":[\n"; 
 
 for(var i = 0; i<jsShapes.count(); i++){
-    jsShapes[i].name = "shape"+i;
+    // if a shape's name is set to its default value of 'Shape',
+    // the script will detect it as null instead of 'Shape'.  
+    // This causes issues, so to workaround this we check if name == null:
+    if(jsShapes[i].name() == null){
+        jsShapes[i].name = "shape"+i;
+    }
     alertMsg += "\t\t{\n\t\t\t\"name\":\"" +jsShapes[i].name()+ "\",\n";
     // percentage of canvas where obj X position is:
     alertMsg += "\t\t\t\"xPers\":" + (jsShapes[i].position().x / doc.canvasSize().width).toFixed(3) + ",\n";

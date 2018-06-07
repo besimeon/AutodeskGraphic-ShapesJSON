@@ -1,0 +1,35 @@
+var doc = app.activeDocument()
+var jsShapes = doc.selectedShapes()
+
+var alertMsg = "{\n\t\"shapes\":[\n"; 
+
+for(var i = 0; i<jsShapes.count(); i++){
+    // if a shape's name is set to its default value of 'Shape',
+    // the script will detect it as null instead of 'Shape'.  
+    // This causes issues, so to workaround this we check if name == null:
+    if(jsShapes[i].name() == null){
+        jsShapes[i].name = "shape"+i;
+    }
+    alertMsg += "\t\t{\n\t\t\t\"name\":\"" +jsShapes[i].name()+ "\",\n";
+    // percentage of canvas where obj X position is:
+    alertMsg += "\t\t\t\"xPers\":" + (jsShapes[i].position().x / doc.canvasSize().width).toFixed(3) + ",\n";
+    // percentage of canvas where obj Y position is:
+    alertMsg += "\t\t\t\"yPers\":" + (jsShapes[i].position().y / doc.canvasSize().height).toFixed(3) + ",\n";
+    // percentage of canvas that width occupies:
+    alertMsg += "\t\t\t\"widthPers\":" + ((jsShapes[i].visibleBounds().size.width) / doc.canvasSize().width).toFixed(3) + ",\n";
+    // percentage of canvas that height occupies:
+    alertMsg += "\t\t\t\"heightPers\":" + ((jsShapes[i].visibleBounds().size.height) / doc.canvasSize().height).toFixed(3) + "\n";
+    alertMsg += "\t\t}";
+    // if not the last item, output comma:
+    if(i < (jsShapes.count() - 1)){
+        alertMsg += ",\n";
+    }
+    // otherwise, don't output comma:
+    else{
+        alertMsg += "\n";
+    }
+}
+
+alertMsg += "\t]\n}";
+
+app.showAlert(alertMsg);
